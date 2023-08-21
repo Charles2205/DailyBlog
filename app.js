@@ -1,14 +1,26 @@
 const express = require('express')
 const dotEnv = require('dotenv')
-const expressLayout = require('express-ejs-layouts')
-const userRoute = require('./routes/blogRouter')
-dotEnv.config()
+const blogRoute = require('./routes/blogRouter')
+const ejs = require('ejs')
+const expressLayouts = require('express-ejs-layouts')
 
-const port = process.env.PORT
+
+
+dotEnv.config()
+const port = process.env.PORT || 4301
+
 const app = express()
 
 
-app.use('/,userRoute')
+
+app.set('view engine','ejs')
+
+// adding middlewares
+app.use(express.static('public'))
+app.use(expressLayouts)
+
+
+app.use('/',blogRoute)
 
 app.listen(port,()=>{
     console.log(`Server is running on http://localhost:${port}`)
