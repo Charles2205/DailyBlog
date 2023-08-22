@@ -10,14 +10,20 @@ const contact =(req,res)=>{
     res.render('pages/contact')    
 }
 
-const addPost =(req,res)=>{
+const viewPost =(req,res)=>{
     res.render('pages/add_post')    
+}
+
+const createPost=(req,res)=>{
+    const {title,description,author} =req.body
+    res.send({title,description,author})
 }
 
 module.exports={
     home,
     about,
     contact,
-    addPost
+    viewPost,
+    createPost,
     
 }
