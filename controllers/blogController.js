@@ -11,7 +11,7 @@ const contact =(req,res)=>{
 }
 
 const addPost =(req,res)=>{
-    res.render('pages/addpost')    
+    res.render('pages/add_post')    
 }
 
 module.exports={
