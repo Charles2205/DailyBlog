@@ -1,8 +1,9 @@
-const blog = require('../database/models/blog')
+const blog = require('../database/model/blog')
 const home =async(req,res)=>{
  const blogs = await blog.findAll()
- 
-    res.render('pages/home')    
+ const records =blogs.map((v)=>{return v.dataValues})
+    res.render('pages/home',{records})    
+    console.log(records);
 }
 
 const about =(req,res)=>{
