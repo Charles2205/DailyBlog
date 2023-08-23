@@ -1,8 +1,12 @@
-const home =(req,res)=>{
-res.render('pages/home')    
+const blog = require('../database/models/blog')
+const home =async(req,res)=>{
+ const blogs = await blog.findAll()
+ 
+    res.render('pages/home')    
 }
 
 const about =(req,res)=>{
+
     res.render('pages/about')    
 }
 
@@ -14,9 +18,11 @@ const viewPost =(req,res)=>{
     res.render('pages/add_post')    
 }
 
-const createPost=(req,res)=>{
+const createPost=async (req,res)=>{
     const {title,description,author} =req.body
-    res.send({title,description,author})
+    //to insert data to the db 
+    await blog.create({title,description,author})
+    res.redirect('/')
 }
 
 module.exports={

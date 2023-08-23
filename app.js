@@ -23,7 +23,18 @@ app.use(express.urlencoded({extended:false}))
 
 app.use('/',blogRoute)
 
-app.listen(port,()=>{
-    sequel.authenticate()
-    console.log(`Server is running on http://localhost:${port}`)
-})
+
+
+const startServer=async()=>{
+    try{
+        await sequel.authenticate()
+        app.listen(port,()=>{
+        
+            console.log(`Server is running on http://localhost:${port}`)
+        });
+    }catch(err){
+        console.log(err);
+    }
+}
+
+startServer()
